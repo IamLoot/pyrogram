@@ -31,6 +31,7 @@ class EditMessageCaption:
         caption: str,
         parse_mode: Optional["enums.ParseMode"] = None,
         caption_entities: List["types.MessageEntity"] = None,
+        show_caption_above_media: bool = None,
         schedule_date: datetime = None,
         reply_markup: "types.InlineKeyboardMarkup" = None
     ) -> "types.Message":
@@ -57,6 +58,9 @@ class EditMessageCaption:
             caption_entities (List of :obj:`~pyrogram.types.MessageEntity`):
                 List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
 
+            show_caption_above_media (``bool``, *optional*):
+                Pass True, if the caption must be shown above the message media. Supported only for animation, photo and video messages.
+            
             schedule_date (:py:obj:`~datetime.datetime`, *optional*):
                 Date when the message will be automatically sent.
 
@@ -77,6 +81,7 @@ class EditMessageCaption:
             text=caption,
             parse_mode=parse_mode,
             entities=caption_entities,
+            show_caption_above_media=show_caption_above_media,
             schedule_date=schedule_date,
             reply_markup=reply_markup
         )
