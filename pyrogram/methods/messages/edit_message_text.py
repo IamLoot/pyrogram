@@ -33,6 +33,7 @@ class EditMessageText:
         text: str,
         parse_mode: Optional["enums.ParseMode"] = None,
         entities: List["types.MessageEntity"] = None,
+        show_caption_above_media: bool = None,
         disable_web_page_preview: bool = None,
         show_above_text: bool = None,
         schedule_date: datetime = None,
@@ -61,6 +62,9 @@ class EditMessageText:
             entities (List of :obj:`~pyrogram.types.MessageEntity`):
                 List of special entities that appear in message text, which can be specified instead of *parse_mode*.
 
+            show_caption_above_media (`bool`, *optional*):
+                Pass True, if the caption must be shown above the message media. Supported only for animation, photo and video messages.
+            
             disable_web_page_preview (``bool``, *optional*):
                 Disables link previews for links in this message.
 
@@ -94,7 +98,7 @@ class EditMessageText:
                 peer=await self.resolve_peer(chat_id),
                 id=message_id,
                 no_webpage=disable_web_page_preview or None,
-                invert_media=show_above_text or None,
+                invert_media=show_above_text or show_caption_above_media or None,
                 schedule_date=utils.datetime_to_timestamp(schedule_date),
                 reply_markup=await reply_markup.write(self) if reply_markup else None,
                 **await utils.parse_text_entities(self, text, parse_mode, entities)
