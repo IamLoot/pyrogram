@@ -35,6 +35,7 @@ class CopyMessage:
         caption: str = None,
         parse_mode: Optional["enums.ParseMode"] = None,
         caption_entities: List["types.MessageEntity"] = None,
+        show_caption_above_media: bool = None,
         disable_notification: bool = None,
         message_thread_id: int = None,
         reply_to_message_id: int = None,
@@ -83,6 +84,9 @@ class CopyMessage:
             caption_entities (List of :obj:`~pyrogram.types.MessageEntity`):
                 List of special entities that appear in the new caption, which can be specified instead of *parse_mode*.
 
+            show_caption_above_media (``bool``, *optional*):
+                Pass True, if the caption must be shown above the message media
+            
             disable_notification (``bool``, *optional*):
                 Sends the message silently.
                 Users will receive a notification with no sound.
@@ -128,6 +132,7 @@ class CopyMessage:
         return await message.copy(
             chat_id=chat_id,
             caption=caption,
+            show_caption_above_media=show_caption_above_media,
             parse_mode=parse_mode,
             caption_entities=caption_entities,
             disable_notification=disable_notification,
