@@ -37,6 +37,7 @@ class SendPhoto:
         caption: str = "",
         parse_mode: Optional["enums.ParseMode"] = None,
         caption_entities: List["types.MessageEntity"] = None,
+        show_caption_above_media : bool = None,
         has_spoiler: bool = None,
         ttl_seconds: int = None,
         disable_notification: bool = None,
@@ -88,6 +89,9 @@ class SendPhoto:
             caption_entities (List of :obj:`~pyrogram.types.MessageEntity`):
                 List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
 
+            show_caption_above_media (``bool``, *optional*):
+                Pass True, if the caption must be shown above the message media
+            
             has_spoiler (``bool``, *optional*):
                 Pass True if the photo needs to be covered with a spoiler animation.
 
@@ -221,6 +225,7 @@ class SendPhoto:
                             peer=peer,
                             media=media,
                             silent=disable_notification or None,
+                            invert_media=show_caption_above_media,
                             reply_to=utils.get_reply_to(
                                 reply_to_message_id=reply_to_message_id,
                                 message_thread_id=message_thread_id,
